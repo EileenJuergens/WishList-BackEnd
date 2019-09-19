@@ -22,25 +22,9 @@ function lintJs () {
     .pipe($.eslint.format())
     .pipe($.eslint.failAfterError());
 }
-​
-// HTML linter
-function lintHtml () {
-  return gulp.src(addDefSrcIgnore(['**/*.html']))
-    .pipe($.htmllint({config: '.htmllintrc.json', failOnError: true}));
-}
-​
-// CSS linter
-function lintCss () {
-  return gulp.src(addDefSrcIgnore(['**/*.css']))
-    .pipe($.stylelint({
-      failAfterError: true,
-      reporters: [{formatter: 'string', console: true}]
-    }));
-}
+
 ​
 // Lint all files
 exports.lint = gulp.parallel(
-  lintJs,
-  lintHtml,
-  lintCss
+  lintJs
 );
