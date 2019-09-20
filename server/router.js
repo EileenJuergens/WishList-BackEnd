@@ -1,23 +1,35 @@
+'use strict';
+
 const router = require('express').Router();
 const contollers = require('./controllers/wishes.controllers');
+const fs = require('fs');
 
-// display dashboard
-router.get('/', contollers.getWishList);
+let _404;
+//FIXME: which path??
+const conf = {clientPath: __dirname + ''}
 
-// display wishlist from main user
-router.get('/WishList', controllers);
+fs.readFile(conf.clientPath + '/404.html', 'utf8', (err, data) => {
+  if (err) _404 = 'The requested URL was not found on this server.';
+  else _404 = data;
+});
 
-// add a wish to my wish list
-router.post('/WishList', controllers.postWish);
+// dashboard
+router.get('/', contollers.getUsers);
 
-// delete a wish from my wish list
-// function just for the back end & testing
-router.delete('/WishList', controllers);
+// wishlist
+router.get('/wishlist/:user_id', controllers.getWishes);
 
-// get method ??
-router.get('/WishList/NewWishForm', controllers);
+// form
+router.post('/wishlist/:user_id/newwishfrom/:wish_id', contollers.postWish);
+router.delete('/wishlist/:user_id/newwishfrom/:wish_id', contollers.deleteWish);
 
+// friends
+router.get('/friends', controllers.getFriends);
 
-
+// Catchall for not found
+router.get('/*', () => {
+  this.status = 404;
+  this.body = _404;
+});
 
 module.exports = router;

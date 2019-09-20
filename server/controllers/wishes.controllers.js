@@ -1,26 +1,37 @@
-// have to fix this: wich models are needed?
-const WishList = require('../models/wishes.models');
-const Wish = require('../models/wishes.models');
+'use strict';
+
+const db = require('../models/index');
 
 
-const getWishList = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
-    const wishList = await WishList.find();
-    res.json(wishList);
+    const users = await db.User.find();
+    res.json(users);
     res.status(201);
   }
   catch (err) {
     req.sendStatus(500);
   }
-}
+};
+
+const getWishes = async (req, res) => {
+  try {
+    const wishes = await db.Wish.find();
+    res.json(wishes);
+    res.status(201);
+  }
+  catch (err) {
+    req.sendStatus(500);
+  }
+};
 
 const postWish = async (req, res) => {
   try {
-    const wish = await Wish.create({
-      description = req.body.description,
-      price = req.body.price,
-      link = req.body.link,
-      notes = req.body.notes
+    const wish = await db.Wish.create({
+      description: req.body.description,
+      price: req.body.price,
+      link: req.body.link,
+      notes: req.body.notes
     });
     res.json(wish);
     res.status(201);
@@ -28,7 +39,19 @@ const postWish = async (req, res) => {
   catch (err) {
     req.sendStatus(500);
   }
-}
+};
 
+const deleteWish = async (req, res) => {
+  try {
+    const wish = await db.Wish.deleteOne({
+      description: req.body.description
+    });
+    res.json(wish);
+    res.status(201);
+  }
+  catch (err) {
+    req.sendStatus(500);
+  }
+};
 
-module.exports = {getWishList, postWish};
+module.exports = {getUsers, getWishes, postWish, deleteWish, getFriends};
