@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const db = {};
 
-const sequelize = new Sequelize('wishlist', {
+const sequelize = new Sequelize('wishlist', 'postgres', 'postgres', {
   host: 'localhost',
   dialect: 'postgres',
   pool: {
@@ -19,14 +19,15 @@ const sequelize = new Sequelize('wishlist', {
 });
 
 
-fs.readdirSync(__dirname);
-fs.filter(file => {
-  return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-});
-fs.forEach(file => {
-  var model = sequelize['import'](path.join(__dirname, file));
-  db[model.name] = model;
-});
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+    var model = sequelize['import'](path.join(__dirname, file));
+    db[model.name] = model;
+  })
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

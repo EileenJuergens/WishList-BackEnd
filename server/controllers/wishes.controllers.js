@@ -5,7 +5,7 @@ const db = require('../models/index');
 
 const getUsers = async (req, res) => {
   try {
-    const users = await db.User.find();
+    const users = await db.User.findAll();
     res.json(users);
     res.status(201);
   }
@@ -16,7 +16,7 @@ const getUsers = async (req, res) => {
 
 const getWishes = async (req, res) => {
   try {
-    const wishes = await db.Wish.find();
+    const wishes = await db.Wish.findAll();
     res.json(wishes);
     res.status(201);
   }
