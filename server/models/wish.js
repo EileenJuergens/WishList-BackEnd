@@ -1,13 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Wish = sequelize.define('wish', {
-    id: {
-      primaryKey: true,
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false
-    },
+  const wish = sequelize.define('wish', {
     description: {
       type: DataTypes.STRING,
       allowNull: false
@@ -25,10 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
   });
-  Wish.associate = db => {
-    Wish.belongsTo(db.User, {foreignKey: 'user.id'})
+  wish.associate = db => {
+    wish.belongsTo(db.user)
   };
-  return Wish;
+  return wish;
 };
-
-//FIXME: do I have to set the property foreignKey? in the association function

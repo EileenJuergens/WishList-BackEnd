@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const db = {};
 
-const sequelize = new Sequelize('wishlist', 'postgres', 'postgres', {
+const sequelize = new Sequelize('wishlist', 'eileenjurgens', 'postgres', {
   host: 'localhost',
   dialect: 'postgres',
   pool: {
@@ -17,7 +17,6 @@ const sequelize = new Sequelize('wishlist', 'postgres', 'postgres', {
   },
   operatorsAliases: false
 });
-
 
 fs
   .readdirSync(__dirname)
