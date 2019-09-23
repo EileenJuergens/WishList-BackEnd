@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const wish = sequelize.define('wish', {
+  const wish = sequelize.define('wishes', {
     description: {
       type: DataTypes.STRING,
       allowNull: false
@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
   });
-  wish.associate = db => {
-    wish.belongsTo(db.user)
-  };
+  // wish.associate = db => {
+  //   db.wish.belongsTo(db.users)
+  // };
   return wish;
 };

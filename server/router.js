@@ -1,23 +1,24 @@
 'use strict';
 
 const router = require('express').Router();
-const controllers = require('./controllers/index');
+const userControllers = require('./controllers/usersController');
+const wishControllers = require('./controllers/wishesController');
 
-// dashboard
-router.get('/', controllers.getUsers);
 
-// wishlist
-router.get('/wishlist/:user_id', controllers.getWishes);
+// Users
+router.get('/', userControllers.getUsers);
+router.post('/', userControllers.createUser);
+router.delete('/', userControllers.deleteUser);
 
-//testing
-router.get('/wishlist/', controllers.getWishes);
-router.post('/wishlist/', controllers.postWish);
+// Wishes
+router.get('/wishlist/', wishControllers.getWishes);
+router.post('/wishlist/', wishControllers.postWish);
+router.delete('/wishlist/', wishControllers.deleteWish);
 
-// form
-router.post('/wishlist/:user_id/newwishform/:wish_id', controllers.postWish);
-router.delete('/wishlist/:user_id/newwishform/:wish_id', controllers.deleteWish);
+// router.get('/wishlist/:user_id', wishControllers.getWishes);
+// router.post('/wishlist/:user_id/newwishform/:wish_id', wishControllers.postWish);
+// router.delete('/wishlist/:user_id/newwishform/:wish_id', wishControllers.deleteWish);
 
-// Create user
-router.post('/friends', controllers.createUser);
+
 
 module.exports = router;
