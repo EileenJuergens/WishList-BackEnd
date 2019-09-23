@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   });
-  // user.associate = db => {
-  //   db.users.hasMany(db.wish)
-  // };
+  user.associate = db => {
+    db.users.hasMany(db.wishes)
+  };
   return user;
 };

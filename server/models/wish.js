@@ -19,8 +19,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
   });
-  // wish.associate = db => {
-  //   db.wish.belongsTo(db.users)
-  // };
+  wish.associate = db => {
+    db.wishes.belongsTo(db.users, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   return wish;
 };

@@ -2,9 +2,6 @@
 
 const db = require('../models/index');
 
-// const user = await db.users.findOne({ where: {id: req.body.users_id}});
-// const whishesLaura = await db.wishes.findAll({ where: {owner: 15}});
-
 
 const getWishes = async (req, res) => {
   try {
@@ -17,15 +14,9 @@ const getWishes = async (req, res) => {
   }
 };
 
-
 const postWish = async (req, res) => {
   try {
-    const wish = await db.wishes.create({
-      description: req.body.description,
-      price: req.body.price,
-      link: req.body.link,
-      notes: req.body.notes
-    });
+    const wish = await db.wishes.create(req.body);
     res.json(wish);
     res.status(201);
   }
@@ -36,9 +27,8 @@ const postWish = async (req, res) => {
 
 const deleteWish = async (req, res) => {
   try {
-    const wish = await db.wishes.deleteOne({
-      description: req.body.description
-    });
+    const wish = await db.wishes.findOne({where: {id: req.params.id}});
+    await wish.destroy();
     res.json(wish);
     res.status(201);
   }

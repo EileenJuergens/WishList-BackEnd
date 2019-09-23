@@ -14,7 +14,6 @@ const getUsers = async (req, res) => {
   }
 };
 
-
 const createUser = async (req, res) => {
   try {
     const user = await db.users.create({
@@ -29,12 +28,10 @@ const createUser = async (req, res) => {
   }
 };
 
-
 const deleteUser = async (req, res) => {
   try {
-    const user = await db.users.deleteOne({
-      username: req.body.username
-    });
+    const user = await db.users.findOne({where: {id: req.params.id}})
+    await user.destroy();
     res.json(user);
     res.status(201);
   }
