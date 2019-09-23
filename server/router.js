@@ -15,9 +15,9 @@ router.get('/wishlist', wishControllers.getWishes);
 router.post('/wishlist', wishControllers.postWish);
 router.delete('/wishlist/:id', wishControllers.deleteWish);
 
-// router.get('/wishlist/:user_id', wishControllers.getWishes);
-// router.post('/wishlist/:user_id/newwishform/:wish_id', wishControllers.postWish);
-// router.delete('/wishlist/:user_id/newwishform/:wish_id', wishControllers.deleteWish);
+// Wishes & "Me"
+router.get('/wishlist/:id', wishControllers.getWishesMe);
+router.post('/wishlist/:id', wishControllers.postWishMe);
 
 
 
