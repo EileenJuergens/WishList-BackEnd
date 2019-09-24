@@ -6,7 +6,13 @@ const db = require("../models/index");
 
 const getWishes = async (req, res) => {
   try {
-    const wishes = await db.wishes.findAll();
+    const userId = req.params.userId;
+    let wishes;
+    if (userId) {
+      wishes = await db.wishes.findAll({ where: { userId: userId } });
+    } else {
+      wishes = await db.wishes.findAll();
+    }
     res.json(wishes);
     res.status(201);
   } catch (err) {
@@ -50,7 +56,7 @@ const getWishesMe = async (req, res) => {
 const postWishMe = async (req, res) => {
   try {
     const userId = req.params.id;
-    const wishes = await db.wishes.create({ ...req.body, userId});
+    const wishes = await db.wishes.create({ ...req.body, userId });
     res.json(wishes);
     res.status(201);
   } catch (err) {
