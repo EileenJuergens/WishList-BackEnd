@@ -20,6 +20,18 @@ const getWishes = async (req, res) => {
   }
 };
 
+const getSpecificWish = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const wishId = req.params.id;
+    const wish = await db.wishes.findAll({ where: {userId: userId, id: wishId} });
+    res.json(wish);
+    res.status(201);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
+
 const postWish = async (req, res) => {
   try {
     const wish = await db.wishes.create(req.body);
@@ -64,4 +76,4 @@ const postWishMe = async (req, res) => {
   }
 };
 
-module.exports = { getWishes, postWish, deleteWish, getWishesMe, postWishMe };
+module.exports = { getWishes, getSpecificWish, postWish, deleteWish, getWishesMe, postWishMe };

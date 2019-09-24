@@ -12,6 +12,7 @@ router.delete('/user/:id', userControllers.deleteUser);
 
 // Wishes
 router.get('/wishlist/:userId?', wishControllers.getWishes);
+router.get('/wishlist/:userId/:id', wishControllers.getSpecificWish);
 router.post('/wishlist', wishControllers.postWish);
 router.delete('/wishlist/:id', wishControllers.deleteWish);
 
