@@ -35,7 +35,7 @@ The Wish List application allows the user to create a personalised collection of
 
 ## Recommendation
 
-Feel free to have a look at the server of this application: [WishList-FrontEnd](https://github.com/EileenJuergens/WishList-FrontEnd)
+Feel free to have a look at the client of this application: [WishList-FrontEnd](https://github.com/EileenJuergens/WishList-FrontEnd)
 
 ## Developer 
 Eileen Jürgens - [GitHub](https://github.com/EileenJuergens) - [LinkedIn](https://www.linkedin.com/in/eileen-jürgens-462595154/) 
