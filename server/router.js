@@ -4,7 +4,6 @@ const router = require('express').Router();
 const userControllers = require('./controllers/usersController');
 const wishControllers = require('./controllers/wishesController');
 
-
 // Users
 router.get('/user', userControllers.getUsers);
 router.post('/user', userControllers.createUser);
